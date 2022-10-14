@@ -1,0 +1,186 @@
+{% extends 'app/main.html' %}
+
+
+{% load static %}
+{% block content %}
+<h3 style="color:black; font-weight: 800; margin-top: 6px;   font-family: Copperplate, Papyrus, fantasy;"
+   class="w3-xxxlarge font-effect-shadow-multiple">
+   <center>Laptop Details</center>
+</h3>
+<div class="row">
+   <div class="col-lg-4">
+      <br>
+      <img class="thumbnail" src="{{ product.image.url }}">
+      <div class="box-element product">
+         <h5><strong>{{product.name}}</strong></h5>
+
+         <hr>
+      </div>
+      <br><br>
+      <h3 style="color:dark-grey; font-weight: 400; margin-top:10px;   font-family: Copperplate, Papyrus, fantasy;">
+         <strong>Average User Ratings</strong>
+      </h3>
+      <h2 class="bold padding-bottom-7"
+         style="color:dark-grey; font-weight: 900;  font-family: Copperplate, Papyrus, fantasy;">{{ data }} <small><b>/
+               5</b></small>
+      </h2>
+
+
+      {% if data == 2 or data == 2.1 %}
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x"></i>
+      <i class="fa fa-star fa-2x"></i>
+      <i class="fa fa-star fa-2x"></i> <!-- Holo star -->
+      {% endif %}
+
+      {% if data == 3 or data == 3.1 %}
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="far fa-star fa-2x"></i>
+      <i class="far fa-star fa-2x"></i>
+      {% endif %}
+
+      {% if data == 4 or data == 4.1 %}
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x"></i>
+      {% endif %}
+      {% if data == 5 %}
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      <i class="fa fa-star fa-2x checked"></i>
+      {% endif %}
+      {% if data > 3.1 and data <= 3.9 %} <i class="fa fa-star fa-2x checked"></i>
+         <i class="fa fa-star fa-2x checked"></i>
+         <i class="fa fa-star fa-2x checked"></i>
+         <i class="fa fa-star-half-full fa-2x halfchcek"></i>
+         <i class="fa fa-star fa-2x"></i>
+         {% endif %}
+
+         {% if data > 2.1 and data <= 2.9 %} <i class="fa fa-star fa-2x checked"></i>
+            <i class="fa fa-star fa-2x checked"></i>
+            <i class="fa fa-star-half-full fa-2x halfchcek"></i>
+            <i class="fa fa-star fa-2x"></i>
+            <i class="fa fa-star fa-2x"></i>
+            {% endif %}
+            {% if data > 4.1 and data <= 4.9 %} <i class="fa fa-star fa-2x checked"></i>
+               <i class="fa fa-star fa-2x checked"></i>
+               <i class="fa fa-star fa-2x checked"></i>
+               <i class="fa fa-star fa-2x checked"></i>
+               <i class="fa fa-star-half-full fa-2x halfchcek"></i>
+               {% endif %}
+
+               <h3
+                  style="color:Dark-grey; font-weight: 400; padding-top:10px; margin-top:10px;   font-family: Copperplate, Papyrus, fantasy;">
+                  <strong>Top Reviews
+               </h3>
+               </strong>
+   </div>
+
+   <div class="col-lg-8" style="padding-left:240px; padding-top:20px">
+
+      <div id="ctk"></div>
+   </div>
+
+   <script>
+      $(document).ready(function () {
+         var chart = {
+            type: 'pie',
+            options3d: {
+               enabled: true,
+               alpha: 45,
+               beta: 0,
+
+            }
+         };
+         var title = {
+            text: 'Sentiment Pie',
+            style: "font-family: Copperplate, Papyrus, fantasy;"
+         };
+         var tooltip = {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+         };
+         var plotOptions = {
+            pie: {
+               allowPointSelect: true,
+               cursor: 'pointer',
+               depth: 35,
+
+
+               dataLabels: {
+                  enabled: true,
+                  format: '{point.name}',
+
+               }
+            }
+         };
+
+
+         var series = [{
+            type: 'pie',
+            name: 'Sentiment Ratio',
+            data: [
+               {
+                  name: 'Positive',
+                  y: {{ t }},
+
+            color: 'green'
+
+                  },
+
+
+         {
+            name: 'Negative',
+            y: {{ f }},
+         sliced: true,
+         color: 'red'
+
+                  },
+
+
+               ]
+            }];
+      var json = {};
+      json.chart = chart;
+      json.title = title;
+      json.tooltip = tooltip;
+      json.credits = false;
+      json.plotOptions = plotOptions;
+      json.series = series;
+      $('#ctk').highcharts(json);
+         });
+
+
+   </script>
+
+
+
+   <div class="row">
+
+      <div class="col-lg-9">
+         <div class="hwrap">
+            <div class="hmove">
+               {% for l in review %}
+               <div class="hslide">
+                  <p style="color:grey"> {{ l }}</p>
+               </div>
+               {% endfor %}
+
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <p></p>
+   </div>
+
+
+
+   {% endblock content %}

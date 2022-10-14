@@ -1,0 +1,50 @@
+{% extends 'app/main.html' %}
+
+
+{% load static %}
+{% block content %}
+<h3 style="color:black; font-weight: 800; font-family: Copperplate, Papyrus, fantasy; "
+  class="w3-xxxlarge font-effect-shadow-multiple">
+  <center>Laptops</center>
+</h3>
+<div class="row">
+  {% for product in products %}
+  <div class="col-lg-4">
+    <img class="thumbnail" src="{{ product.image.url }}">
+    <div class="box-element product">
+      <h5><strong> {{product.name}}</strong></h5>
+      <a class="btn btn-outline-secondary add-btn" href="{% url 'laptop_score' product.id %}">View Details</a>
+
+
+    </div>
+  </div>
+
+  {% endfor %}
+
+
+</div>
+
+<!--Pagination-->
+<div class="container p-4">
+  <div class="pagination justify-content-center">
+    <span class="step-links">
+      {% if products.has_previous %}
+      <!--                  <a href="?page=1">&laquo; first</a>-->
+      <a href="?page={{ products.previous_page_number }}"><strong>Previous</strong></a>
+      {% endif %}
+
+      <span class="current">
+        <strong>Page {{ products.number }} of {{ products.paginator.num_pages }}
+        </strong>
+      </span>
+
+      {% if products.has_next %}
+      <a href="?page={{ products.next_page_number }}"><strong>Next</strong></a>
+      <!--                  <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>-->
+      {% endif %}
+    </span>
+  </div>
+</div>
+
+<!--end of Pagination-->
+{% endblock content %}

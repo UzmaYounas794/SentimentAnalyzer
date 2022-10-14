@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <style>
+        .w3-lobster {
+            font-family: "Lobster", Sans-serif;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .halfchcek {
+            color: orange;
+        }
+
+        /* (A) OUTER CONTAINER */
+        .hwrap {
+            /* (A1) DIMENSIONS */
+            width: 100%;
+            height: 150px;
+            /* OPTIONAL */
+
+            /* (A2) COSMETICS */
+            background: white;
+            border: 2px rounded grey;
+            overflow: hidden;
+            /* HIDE SCROLLBARS */
+        }
+
+        /* (B) MIDDLE CONTAINER - FLEX LAYOUT */
+        .hmove {
+            display: flex;
+            position: relative;
+            top: 0;
+            right: 0;
+        }
+
+        /* (C) SLIDES - FORCE INTO ONE LONG HORIZONTAL ROW */
+        .hslide {
+            width: 100%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        /* (D) SLIDE ANIMATION */
+        @keyframes slideh {
+
+            /* (D0) THE IDEA - USE KEYFRAMES TO SHIFT SLIDES */
+            0% {
+                right: 0;
+            }
+
+            33% {
+                right: 100%;
+            }
+
+            66% {
+                right: 200%;
+            }
+
+            100% {
+                right: 0;
+            }
+
+            /* (D1) BUT THE ABOVE WILL SHIFT NON-STOP */
+            /* SO WE ADD PAUSES BETWEEN EACH SLIDE */
+            0% {
+                right: 0;
+            }
+
+            30% {
+                right: 0;
+            }
+
+            33% {
+                right: 100%;
+            }
+
+            63% {
+                right: 100%;
+            }
+
+            66% {
+                right: 200%;
+            }
+
+            97% {
+                right: 200%;
+            }
+
+            100% {
+                right: 0;
+            }
+        }
+
+        .hmove {
+            animation: slideh linear 15s infinite;
+        }
+
+        .hmove:hover {
+            animation-play-state: paused;
+        }
+    </style>
+    <title>Sentiment Analyzer System</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nivo-lightbox/nivo-lightbox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nivo-lightbox/nivo-lightbox-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <script src="./static/js/modernizr.custom.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=shadow-multiple">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+
+</head>
+
+<body>
+    <!-- <section id="testimonial" -->
+    <div class="col-md-11 col-xs-10">
+        <a href="{% url 'home' %}"><span
+                style="color: #428bca; font-weight: 600; font-family: 'Brush Script MT', cursive;" id="logo"
+                class="w3-xxxlarge font-effect-shadow-multiple"><strong class="strong">SAS</strong></span></a>
+        <!-- <h2 style="margin-top:40px">
+            <center>hello</center>
+        </h2> -->
+    </div>
+    <!--  <section id="header" class="header">-->
+
+    <div class="container">
+
+
+        {% block content %}
+
+
+        {% endblock content %}
+    </div>
+
+    <script src="./static/js/jquery-1.11.2.min.js"></script>
+    <script src="./static/js/wow.min.js"></script>
+    <script src="./static/js/owl-carousel.js"></script>
+    <script src="./static/js/nivo-lightbox.min.js"></script>
+    <script src="./static/js/smoothscroll.js"></script>
+    <!--<script src="js/jquery.ajaxchimp.min.js"></script>-->
+    <script src="./static/js/bootstrap.min.js"></script>
+    <script src="./static/js/classie.js"></script>
+    <script src="./static/js/script.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+
+    <script src="./static/js/slide.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".hideit").click(function () {
+                $(".overlay").hide();
+            });
+            $("#trigger-overlay").click(function () {
+                $(".overlay").show();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            var kawa = $('.top-bar');
+            var back = $('#back-to-top');
+            function scroll() {
+                if ($(window).scrollTop() > 700) {
+                    kawa.addClass('fixed');
+                    back.addClass('show-top');
+
+                } else {
+                    kawa.removeClass('fixed');
+                    back.removeClass('show-top');
+                }
+            }
+
+            document.onscroll = scroll;
+        });
+    </script>
+    <!--HHHHHHHHHHHH        Smooth Scrooling     HHHHHHHHHHHHHHHH-->
+    <script>
+        $(function () {
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+
+        function update() {
+            var element = document.getElementById("myprogressBar");
+            var width = 1;
+            var identity = setInterval(scene, 100);
+            function scene() {
+                if (width >= 100) {
+                    clearInterval(identity);
+                    window.location.href = "app/LaptopScore.html";
+                } else {
+                    width++;
+                    element.style.width = width + '%';
+                    element.innerHTML = width * 1 + '%';
+                }
+            }
+        }
+
+    </script>
+
+    <script>
+        /* Radians to Degrees:  x * Math.PI/180; */
+        $(function () {
+            /* Settings */
+            var rotateSlider = {
+                slideHeight: 360,
+                slideWidth: 480,
+            };
+
+            /* Do Math and set properties */
+            rotateSlider.slideCount = $('.rotate-slider .slides li').length;
+            rotateSlider.slideAngle = 360 / $('.rotate-slider .slides li').length;
+            rotateSlider.sliderElement = $('.rotate-slider');
+            rotateSlider.slides = $('.rotate-slider .slides li');
+            rotateSlider.slidesContainer = $('.rotate-slider .slides');
+            rotateSlider.slideAngle = 360 / rotateSlider.slideCount;
+            rotateSlider.halfAngleRad = rotateSlider.slideAngle / 2 * Math.PI / 180;
+            rotateSlider.innerRadius = 1 / Math.tan(rotateSlider.halfAngleRad) * rotateSlider.slideWidth / 2;
+            rotateSlider.outerRadius = Math.sqrt(Math.pow(rotateSlider.innerRadius + rotateSlider.slideHeight, 2) + (Math.pow((rotateSlider.slideWidth / 2), 2)));
+            rotateSlider.upperArcHeight = rotateSlider.outerRadius - (rotateSlider.innerRadius + rotateSlider.slideHeight);
+            rotateSlider.lowerArcHeight = rotateSlider.innerRadius - (rotateSlider.innerRadius * (Math.cos(rotateSlider.halfAngleRad)));
+            rotateSlider.slideFullWidth = (Math.sin(rotateSlider.halfAngleRad) * rotateSlider.outerRadius) * 2;
+            rotateSlider.slideFullHeight = rotateSlider.upperArcHeight + rotateSlider.slideHeight + rotateSlider.lowerArcHeight
+            rotateSlider.slideSidePadding = (rotateSlider.slideFullWidth - rotateSlider.slideWidth) / 2;
+            rotateSlider.fullArcHeight = rotateSlider.outerRadius - (rotateSlider.outerRadius * (Math.cos(rotateSlider.halfAngleRad)));
+            rotateSlider.lowerArcOffset = (rotateSlider.slideFullWidth - (Math.sin(rotateSlider.halfAngleRad) * rotateSlider.innerRadius * 2)) / 2;
+
+            /* Set height and width of slider element */
+            rotateSlider.sliderElement.css('height', rotateSlider.slideHeight + 'px');
+            rotateSlider.sliderElement.css('width', rotateSlider.slideWidth + 'px');
+
+            /* Set height and width of slides container and offset width*/
+            rotateSlider.slidesContainer.css('height', rotateSlider.outerRadius * 2 + 'px');
+            rotateSlider.slidesContainer.css('width', rotateSlider.outerRadius * 2 + 'px');
+
+            /* Offset width and arc height */
+            rotateSlider.slidesContainer.css('transform', 'translateX(-50%)');
+            rotateSlider.slidesContainer.css('top', '-' + rotateSlider.upperArcHeight + 'px');
+
+            /* Generate path for slide clipping */
+            var pathCoords = 'M 0 ' + rotateSlider.fullArcHeight;
+            pathCoords += ' A ' + rotateSlider.outerRadius + ' ' + rotateSlider.outerRadius + ' 0 0 1 ' + rotateSlider.slideFullWidth + ' ' + rotateSlider.fullArcHeight;
+            pathCoords += ' L ' + (rotateSlider.slideFullWidth - rotateSlider.lowerArcOffset) + ' ' + rotateSlider.slideFullHeight;
+            pathCoords += ' A ' + rotateSlider.innerRadius + ' ' + rotateSlider.innerRadius + ' 0 0 0 ' + rotateSlider.lowerArcOffset + ' ' + rotateSlider.slideFullHeight + ' Z';
+            $('#slideClip').find('path').attr('d', pathCoords);
+
+            /* Apply styles to each slide */
+            var i = 0;
+            rotateSlider.slides.each(function () {
+                /* Set distance from point of rotation */
+                $(this).css('transform-origin', 'center ' + (rotateSlider.innerRadius + rotateSlider.slideHeight) + 'px');
+
+                /* Set slide Height and Width */
+                $(this).css('height', rotateSlider.slideHeight + 'px');
+                $(this).css('width', rotateSlider.slideWidth + 'px');
+
+                /* Set calculated padding for width, upper arc height, and lower arc height */
+                $(this).css('padding', rotateSlider.upperArcHeight + 'px ' + rotateSlider.slideSidePadding + 'px ' + rotateSlider.lowerArcHeight + 'px ' + rotateSlider.slideSidePadding + 'px ');
+
+                /* Offset container Arc Height */
+                $(this).css('top', rotateSlider.upperArcHeight + 'px');
+
+                /* Offset Width, then Rotate Slide, then offset individual Top Arcs  */
+                $(this).css('transform', 'translateX(-50%) rotate(' + rotateSlider.slideAngle * i + 'deg) translateY(-' + rotateSlider.upperArcHeight + 'px)');
+
+                /* Add clipping path  */
+                $(this).css('-webkit-clip-path', 'url(#slideClip)');
+                $(this).css('clip-path', 'url(#slideClip)');
+
+                i++;
+            });
+
+            /* Set Interval to rotate */
+            var currentRotation = 0;
+            var rotateInterval = window.setInterval(function () {
+                if (!rotateSlider.slidesContainer.hasClass('animate')) {
+                    rotateSlider.slidesContainer.addClass('animate')
+                }
+                currentRotation = currentRotation - rotateSlider.slideAngle;
+                rotateSlider.slidesContainer.css('transform', 'translateX(-50%) rotate(' + currentRotation + 'deg)');
+            }, 4000);
+        });
+
+    </script>
+    <!-- </section>-->
+</body>
+
+</html>
